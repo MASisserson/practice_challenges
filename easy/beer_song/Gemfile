@@ -1,0 +1,8 @@
+source 'https://rubygems.org'
+
+ ruby '2.7.1'
+
+gem 'minitst', '~> 5.10'
+gem 'minitst-reporters', '~> 1.1'
+gem 'rake', '~> 13.0.3'
+gem 'pry', '~> 0.14.1'

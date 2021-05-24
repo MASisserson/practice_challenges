@@ -1,7 +1,7 @@
 class SumOfMultiples
   @@set = [3, 5]
 
-  def initialize(set)
+  def initialize(*set)
     @set = @@set
     @set = set if set
   end
