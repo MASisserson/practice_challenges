@@ -1,3 +1,80 @@
+# Problem Take 2
+
+I need to make a diamond that is formed of letters as in a way like:
+  A   
+ B B  
+C   C
+ B B
+  A
+when given something like: `Diamond.make_diamond('C')`
+
+# Separate Problems
+1. The creation of the first and last line with an A on it
+2. The creation of the diamond shape between the first and last line
+3. Putting the right letters in the in between lines.
+
+*The creation of the first and last line with an A on it*
+The formula is something like:
+(argument_location_in_alphabet)' ' + 'A' + (argument_location_in_alphabet)' ' + "\n"
+
+*The creation of the diamond shape*
+The formula is something like:
+
+first_line: (argument_location_in_alphabet - 1)' ' + 'B' + ' ' + B + (argument_location_in_alphabet - 1)' '
+
+From there: 
+  Letters increasing formula:
+    (outer - 1) + letter + (inner + 2) + letter + (outer - 1)
+  Letters decreasing formula:
+    (outer + 1) + letter + (inner - 2) + letter + (outer + 1)
+
+The pattern switches from increasing to decreasing when on the argument letter.
+The pattern stops decreasing when 'B' is reached again.
+
+Where:
+first_line is the line with 'B' on it
+
+*Putting the right letters in the in between lines*
+I can iterate through an array that contains the letters from B to the argument and back to B again as in : [B, C, D, E, D, C, B].
+
+
+
+# Final Process
+1. Construct a class method: `a_line` -> generates the 'A' line
+2. Construct a class method: `make_diamond`
+    The letters will be obtained from the letters array
+    The construction of the string will follow the above formulas
+    When the array picks up an element that is == to the argument, going_down will be set to true
+      A conditional statement, `going_down` will guide which formula is used.
+      Variables will be initialized for the `outer` and `inner` spaces.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+_____________________________________________________________________________________
+
 # Problem
 
 Gotta make method that takes a letter from the alphabet and returns a diamong shape.
