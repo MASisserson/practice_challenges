@@ -1,107 +1,44 @@
 class Diamond
-  def self.make_diamond(arg)
-    request = arg.upcase
-    self.determine_alphabet_location(request)
-    @@outer = @@alph_idx - 1
-    @@inner = 1
+  def self.make_diamond(letter)
+    alphabet_arr = construct_alphabet_arr(letter)
 
-    diamond_string = ''
-    diamond_string << self.a_line(request)
-    return diamond_string if request == 'A'
+    outer_spaces = alphabet_arr.uniq.size - 1
+    inner_spaces = 1
+    tot_lines = alphabet_arr.size
+    mid_point = (alphabet_arr.size / 2) + 1
+    index = 0
+    result = ''
 
-    diamond_string << self.center_lines(request)
-    diamond_string << self.a_line(request)
-    diamond_string
+    until index >= tot_lines
+      result << create_line(outer_spaces, inner_spaces, alphabet_arr[index])
+      index += 1
+      if index < mid_point
+        outer_spaces -= 1
+        inner_spaces += 2
+      else
+        outer_spaces += 1
+        inner_spaces -= 2
+      end
+    end
+
+    result
   end
 
   private
 
-  def self.a_line(arg)
-    "#{@@alph_idx * ' '}A#{@@alph_idx * ' '}\n" 
+  def self.construct_alphabet_arr(letter)
+    ('A'..letter).to_a + ('A'..letter).to_a.reverse.drop(1)
   end
 
-  def self.b_line(arg)
-    "#{@@outer * ' '}B B#{@@outer * ' '}"
+  def self.create_line(outer, inner, letter)
+    "#{' ' * outer}#{diamond_part(inner, letter)}#{' ' * outer}\n"
   end
 
-  def self.after_b_lines(arg)
-    going_up = true
-
-    until 
-  end
-
-  def self.center_lines(arg)
-
-  end
-
-  def self.determine_alphabet_location(arg)
-    counter = 0
-
-    'A'.upto('Z') do |check_letter|
-      break if arg == check_letter
-      counter += 1
+  def self.diamond_part(inner, letter)
+    if inner == 1
+      letter
+    else
+      letter + (' ' * (inner - 2)) + letter
     end
-
-    @@alph_idx = counter
   end
 end
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# class Diamond
-#   def self.make_diamond(letter)
-#     letter_range = ('A'..letter.upcase).to_a
-#     outer_spaces = letter_range.size - 1
-#     inner_spaces = 0
-#     position = 0
-#     diamond = ''
- 
-    
-#   end
-
-#   private
-
-#   def self.inner_spaces_formula
-#     1 + ((idx - 1) * 2)
-#   end
-
-#   def self.return_line(arr, idx)
-#     if idx == 0
-#       "#{' ' * (arr.size - 1)}#{arr[idx]}#{' ' * (arr.size - 1)}"
-#     else "#{' ' * ((arr.size - 1) - idx)}#{arr[idx]}"/
-#       "#{self.inner_formula(idx)}#{arr[idx]}"/
-#       "#{' ' * ((arr.size - 1) - idx)}"
-#     end
-#   end
-# end

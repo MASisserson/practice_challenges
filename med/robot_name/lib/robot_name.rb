@@ -8,7 +8,7 @@ class Robot
   end
 
   def name
-    return @name if !@name.nil?
+    return @name if @name
     generate_name
     @name
   end
